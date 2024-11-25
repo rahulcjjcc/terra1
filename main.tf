@@ -3,12 +3,10 @@ provider "google" {
   region  = var.region
 }
 
-resource "google_storage_bucket" "example_bucket" {
-  name          = var.bucket_name
-  location      = var.region
-  force_destroy = true
-}
+resource "google_storage_bucket" "static" {
+ name          = "terramaxrahulccjj"
+ location      = "US"
+ storage_class = "STANDARD"
 
-variable "project_id" {}
-variable "region" {}
-variable "bucket_name" {}
+ uniform_bucket_level_access = true
+}
