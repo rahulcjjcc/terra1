@@ -1,0 +1,40 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      # Step 3: Authenticate with GCP
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # Step 4: Initialize Terraform
+      - name: Terraform Init
+        run: terraform init
+
+      # Step 5: Plan Terraform Changes
+      - name: Terraform Plan
+        run: terraform plan -var="project_id=${{ secrets.PROJECT_ID }}" -var="region=us-central1" -var="bucket_name=my-unique-bucket"
+
+      # Step 6: Apply Terraform Changes
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        run: terraform apply -auto-approve -var="project_id=${{ secrets.PROJECT_ID }}" -var="region=us-central1" -var="bucket_name=my-unique-bucket"
