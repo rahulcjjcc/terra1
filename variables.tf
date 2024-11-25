@@ -1,14 +1,14 @@
 variable "project_id" {
-  description = "maximal-symbol-439708-a3"
+  description = "GCP project ID"
   type        = string
 }
 
 variable "region" {
-  description = "us-east1"
+  description = "Region for the bucket"
   type        = string
 }
 
 variable "bucket_name" {
-  description = "terramaxrahulccjj"
+  description = "Name of the bucket"
   type        = string
 }
