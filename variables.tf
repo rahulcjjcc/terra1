@@ -4,7 +4,7 @@ variable "project_id" {
 }
 
 variable "region" {
-  description = "us"
+  description = "us-east1"
   type        = string
 }
 
