@@ -1,5 +1,5 @@
 provider "google" {
-  project = var.project_id
+  project = maximal-symbol-439708-a3
   }
 
 resource "google_storage_bucket" "static" {
