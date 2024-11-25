@@ -32,9 +32,8 @@ jobs:
 
       # Step 5: Plan Terraform Changes
       - name: Terraform Plan
-        run: terraform plan -var="project_id=${{ secrets.PROJECT_ID }}" -var="region=us-central1" -var="bucket_name=my-unique-bucket"
-
+        run: terraform plan
       # Step 6: Apply Terraform Changes
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-        run: terraform apply -auto-approve -var="project_id=${{ secrets.PROJECT_ID }}" -var="region=us-central1" -var="bucket_name=my-unique-bucket"
+        run: terraform apply -auto-approve
