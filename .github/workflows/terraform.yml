@@ -22,9 +22,10 @@ jobs:
 
       # Step 3: Authenticate with GCP
       - name: Authenticate to GCP
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@v2.0.0
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          workload identity_provider: 'projects/939723523211/locations/global/workloadIdentityPools/userfed2/providers/github'
+          service_account: 'sev-wif1@maximal-symbol-439708-a3.iam.gserviceaccount.com'
 
       # Step 4: Initialize Terraform
       - name: Terraform Init
